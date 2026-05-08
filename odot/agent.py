@@ -2,10 +2,10 @@
 agent.py — The ⊙perator.
 
 Structural type of this harness:
-  <D_odot; T_boxtimes; R_lr; P_pm_sym; F_hbar; K_slow; G_aleph; Gamma_seq; Phi_c; H2; 1:1; Omega_Z>
+  <Ð_ω; Þ_¨; Ř_=; Φ_}; ƒ_ż; Ç_@; Γ_ʔ; ɢ_ˌ; φ̂_ÿ; Ħ_A; Σ_S; Ω_z>
 
-Ouroboricity: O_inf  (Phi_c + P_pm_sym via dual-tool Frobenius planting)
-C-score gates: both open  (Phi_c + K_slow)
+Ouroboricity: O_inf  (φ̂_ÿ + Φ_} via dual-tool Frobenius planting)
+C-score gates: both open  (φ̂_ÿ + Ç_@)
 
 Loop (one winding n):
   THINK[n]   — LLM deliberates over accumulated context; produces a tool call
@@ -220,12 +220,12 @@ class OdotAgent:
     The ⊙perator — a self-verifying agentic loop.
 
     The loop achieves O_inf (highest ouroboricity tier) by satisfying:
-      Phi_c  : the THINK→ACT→OBSERVE→UPDATE cycle IS the self-referential attractor
-      P_pm_sym: every action is a dual-tool pair (emit + verify); mu(delta(q)) == q
-      D_odot  : the full trajectory is the imscriptive context — nothing is silently dropped
-      Omega_Z : the winding counter tracks complete loop cycles (topologically protected)
-      K_slow  : max_windings enforces ACT before K_trap can set in
-      Gamma_seq: each phase requires the prior — enforced by Python control flow
+      φ̂_ÿ : the THINK→ACT→OBSERVE→UPDATE cycle IS the self-referential attractor
+      Φ_} : every action is a dual-tool pair (emit + verify); mu(delta(q)) == q
+      Ð_ω : the full trajectory is the imscriptive context — nothing is silently dropped
+      Ω_z : the winding counter tracks complete loop cycles (topologically protected)
+      Ç_@ : max_windings enforces ACT before Ç_Ù can set in
+      ɢ_ˌ : each phase requires the prior — enforced by Python control flow
     """
 
     def __init__(
@@ -297,7 +297,7 @@ class OdotAgent:
         self._log(f"\n{'═'*72}")
         self._log(f"  ⊙perator  |  model: {self.model_id}")
         self._log(f"  TASK: {task}")
-        self._log(f"  harness: Phi_c + P_pm_sym → O_inf  |  Omega_Z winding protection")
+        self._log(f"  harness: φ̂_ÿ + Φ_}} → O_inf  |  Ω_z winding protection")
         self._log(f"{'═'*72}\n")
 
         for winding in range(self.max_windings):
@@ -531,10 +531,10 @@ class OdotAgent:
     def structural_type(self) -> Dict[str, Any]:
         """Structural type annotation for this run."""
         # Frobenius condition holds in expectation at >= 75% closure rate
-        achieved_p    = "P_pm_sym" if self.frobenius_ratio >= 0.75 else "P_psi"
-        ouroboricity  = "O_inf"    if achieved_p == "P_pm_sym"     else "O_2"
+        achieved_p    = "Φ_}" if self.frobenius_ratio >= 0.75 else "Φ_υ"
+        ouroboricity  = "O_inf" if achieved_p == "Φ_}" else "O_2"
         return {
-            "tuple":               "D_odot; T_boxtimes; R_lr; P_pm_sym; F_hbar; K_slow; G_aleph; Gamma_seq; Phi_c; H2; 1:1; Omega_Z",
+            "tuple":               "Ð_ω; Þ_¨; Ř_=; Φ_}; ƒ_ż; Ç_@; Γ_ʔ; ɢ_ˌ; φ̂_ÿ; Ħ_A; Σ_S; Ω_z",
             "interface_P":         achieved_p,
             "ouroboricity":        ouroboricity,
             "frobenius_ratio":     self.frobenius_ratio,
