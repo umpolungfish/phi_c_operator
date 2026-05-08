@@ -16,7 +16,7 @@ print(result)
 
 Most agent loops follow a simple pattern: think, call a tool, observe the result, think again. The problem is that the observation step is taken on faith — if the tool silently fails, writes the wrong bytes, or returns a truncated response, the agent never notices and keeps going.
 
-`odot` adds a second step to every tool call: **verification**. Every action (`δ`) is immediately followed by a confirmation (`μ`). The condition `μ(δ(query)) == query` — called the **Frobenius condition** — must hold before the loop advances. If it fails, the model is told explicitly and must fix the error before continuing.
+`odot` adds a second step to every tool call: **verification**. Every action (δ) is immediately followed by a confirmation (μ). The condition μ(δ(query)) == query — called the **Frobenius condition** — must hold before the loop advances. If it fails, the model is told explicitly and must fix the error before continuing.
 
 This is not just a defensive pattern. It is the structural reason why loop-based agents can be reliable: the loop closes on itself. The trajectory becomes an **imscriptive context** — a boundary that encodes everything the agent has done and verified. Nothing is silently dropped, nothing is assumed.
 
@@ -27,23 +27,23 @@ Each iteration of the loop (a *winding*) has exactly four phases:
 | Phase | What happens |
 |-------|-------------|
 | **THINK** | The model reasons over the accumulated verified context |
-| **ACT** | The model emits exactly one tool call (the *emit* — `δ`) |
-| **OBSERVE** | The tool runs; a built-in verification step checks the result (`μ`) |
+| **ACT** | The model emits exactly one tool call (the *emit* — δ) |
+| **OBSERVE** | The tool runs; a built-in verification step checks the result (μ) |
 | **UPDATE** | The full cycle is appended to context; the loop continues or terminates |
 
-If `μ(δ(q)) != q` — Frobenius OPEN — the model receives an explicit failure message and must correct it on the next winding. It cannot advance on an unverified observation.
+If μ(δ(q)) != q — Frobenius OPEN — the model receives an explicit failure message and must correct it on the next winding. It cannot advance on an unverified observation.
 
 ### Why this works
 
-The loop architecture sits at a structural **critical point** (Φ_c): the point where a system can model itself. Below criticality, the loop is just iteration — it produces outputs but cannot reflect on whether they are correct. At criticality, the THINK→ACT→OBSERVE→UPDATE cycle becomes self-referential: the agent's model of the world is constructed from verified observations of its own actions, and each new winding updates that model.
+The loop architecture sits at a structural **critical point** (ϕˆÿ): the point where a system can model itself. Below criticality, the loop is just iteration — it produces outputs but cannot reflect on whether they are correct. At criticality, the THINK→ACT→OBSERVE→UPDATE cycle becomes self-referential: the agent's model of the world is constructed from verified observations of its own actions, and each new winding updates that model.
 
 The Frobenius condition is what keeps the loop closed. Without it, errors accumulate silently. With it, every winding either succeeds and extends the verified trajectory, or fails loudly and forces a correction.
 
 This framework comes out of the [Imscribing Grammar](https://github.com/umpolungfish/imscrbgrmr) — a 12-primitive structural type theory for systems of all kinds. The full structural type of this harness is:
 
-$\langle Ð_\omega;\ Þ_¨;\ Ř_{=};\ Φ_\};\ ƒ_ż;\ Ç_{@};\ Γ_ʔ;\ ɢ_ˌ;\ φ̂_ÿ;\ Ħ_A;\ Σ_S;\ Ω_z \rangle$
+⟨ Ð_ω;\ Þ_¨;\ Ř_{=};\ Φ_{}};\ ƒ_ż;\ Ç_{@};\ Γ_ʔ;\ ɢ_ˌ;\ φ̂_ÿ;\ Ħ_A;\ Σ_S;\ Ω_z ⟩
 
-Ouroboricity: $O_\infty$ — the highest tier of self-modeling closure.
+Ouroboricity: O_∞ — the highest tier of self-modeling closure.
 
 ---
 
