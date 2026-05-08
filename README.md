@@ -50,16 +50,21 @@ Ouroboricity: $O_\infty$ — the highest tier of self-modeling closure.
 ## Installation
 
 ```bash
-pip install odot
+git clone https://github.com/umpolungfish/odot_operator
+cd odot_operator
+pip install .
 # or with web fetch support:
-pip install "odot[web]"
+pip install ".[web]"
 ```
 
 With [uv](https://docs.astral.sh/uv/):
 
 ```bash
-uv add odot
-uv add "odot[web]"
+git clone https://github.com/umpolungfish/odot_operator
+cd odot_operator
+uv sync
+# or with web fetch support:
+uv sync --extra web
 ```
 
 Set your API key:
