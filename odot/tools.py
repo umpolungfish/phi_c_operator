@@ -1,5 +1,5 @@
 """
-tools.py — Universal dual-tool battery for the Phi_c boundary operator.
+tools.py — Universal dual-tool battery for the ⊙perator.
 
 Each tool is a (emit_fn, verify_fn) pair.
   emit_fn(args: dict) -> str          — execute the action
@@ -182,7 +182,7 @@ def _web_fetch_emit(args: Dict[str, Any]) -> str:
         import httpx
         r = httpx.get(
             url, timeout=15, follow_redirects=True,
-            headers={"User-Agent": "phi-c-agent/0.1"},
+            headers={"User-Agent": "odot-agent/0.1"},
         )
         r.raise_for_status()
         text  = r.text

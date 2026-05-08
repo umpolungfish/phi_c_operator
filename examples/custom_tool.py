@@ -10,7 +10,7 @@ Run:
 """
 
 import json
-from phi_c import PhiCAgent
+from odot import OdotAgent
 
 # Emit: perform the action, return a string
 def db_query_emit(args):
@@ -44,7 +44,7 @@ db_query_schema = {
     },
 }
 
-agent = PhiCAgent(model="grok-4")
+agent = OdotAgent(model="grok-4")
 agent.register_tool("db_query", db_query_schema, db_query_emit, db_query_verify)
 
 result = agent.run_sync("Query the users table (SELECT * FROM users) and report how many users exist.")

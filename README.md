@@ -1,11 +1,11 @@
 # ⊙perator
 
-A self-verifying agentic loop for any OpenAI-compatible model.
+A true self-verifying agentic loop harness.
 
 ```python
-from phi_c import PhiCAgent
+from odot import OdotAgent
 
-agent = PhiCAgent(model="grok-4")
+agent = OdotAgent(model="grok-4")
 result = agent.run_sync("Read the file README.md and count the number of sections.")
 print(result)
 ```
@@ -16,7 +16,7 @@ print(result)
 
 Most agent loops follow a simple pattern: think, call a tool, observe the result, think again. The problem is that the observation step is taken on faith — if the tool silently fails, writes the wrong bytes, or returns a truncated response, the agent never notices and keeps going.
 
-`phi-c` adds a second step to every tool call: **verification**. Every action (`delta`) is immediately followed by a confirmation (`mu`). The condition `mu(delta(query)) == query` — called the **Frobenius condition** — must hold before the loop advances. If it fails, the model is told explicitly and must fix the error before continuing.
+`odot` adds a second step to every tool call: **verification**. Every action (`delta`) is immediately followed by a confirmation (`mu`). The condition `mu(delta(query)) == query` — called the **Frobenius condition** — must hold before the loop advances. If it fails, the model is told explicitly and must fix the error before continuing.
 
 This is not just a defensive pattern. It is the structural reason why loop-based agents can be reliable: the loop closes on itself. The trajectory becomes an **imscriptive context** — a boundary that encodes everything the agent has done and verified. Nothing is silently dropped, nothing is assumed.
 
@@ -50,16 +50,16 @@ Ouroboricity: $O_\infty$ — the highest tier of self-modeling closure.
 ## Installation
 
 ```bash
-pip install phi-c
+pip install odot
 # or with web fetch support:
-pip install "phi-c[web]"
+pip install "odot[web]"
 ```
 
 With [uv](https://docs.astral.sh/uv/):
 
 ```bash
-uv add phi-c
-uv add "phi-c[web]"
+uv add odot
+uv add "odot[web]"
 ```
 
 Set your API key:
@@ -73,9 +73,9 @@ export OPENROUTER_API_KEY=your_key_here
 ## Quick start
 
 ```python
-from phi_c import PhiCAgent
+from odot import OdotAgent
 
-agent = PhiCAgent(model="grok-4")
+agent = OdotAgent(model="grok-4")
 result = agent.run_sync("Find all Python files in the current directory and count the lines in each.")
 print(result)
 ```
@@ -84,10 +84,10 @@ Async:
 
 ```python
 import asyncio
-from phi_c import PhiCAgent
+from odot import OdotAgent
 
 async def main():
-    agent = PhiCAgent(model="claude-opus-4")
+    agent = OdotAgent(model="claude-opus-4")
     return await agent.run("Summarise the file report.txt")
 
 result = asyncio.run(main())
@@ -114,7 +114,7 @@ Any OpenRouter model by alias or full ID, plus local servers via prefix syntax:
 Custom endpoints:
 
 ```python
-agent = PhiCAgent(
+agent = OdotAgent(
     model="my-model",
     base_url="http://my-server:8000/v1",
     api_key="my-key",
@@ -168,7 +168,7 @@ Register your own tools with a matching emit + verify pair:
 
 ```python
 import requests
-from phi_c import PhiCAgent
+from odot import OdotAgent
 
 def search_emit(args):
     query = args["query"]
@@ -195,7 +195,7 @@ search_schema = {
     },
 }
 
-agent = PhiCAgent(model="grok-4")
+agent = OdotAgent(model="grok-4")
 agent.register_tool("search", search_schema, search_emit, search_verify)
 result = agent.run_sync("Search for the latest news on quantum computing.")
 ```
@@ -235,17 +235,17 @@ print(json.dumps(agent.structural_type, indent=2))
 ## CLI
 
 ```bash
-phi-c "List all files larger than 1MB in the current directory"
-phi-c --model claude-opus-4 --file task.txt
-phi-c --show-type --trajectory "Run the test suite and report failures"
-phi-c --output result.json "Analyse log.txt for error patterns"
+odot "List all files larger than 1MB in the current directory"
+odot --model claude-opus-4 --file task.txt
+odot --show-type --trajectory "Run the test suite and report failures"
+odot --output result.json "Analyse log.txt for error patterns"
 ```
 
 ---
 
 ## Why the name
 
-The name comes from the structural primitive Φ_c (Phi-sub-c) — the critical point in the space of dynamical systems where **self-modeling becomes possible**. At sub-critical Φ, a loop is just iteration: it processes inputs and produces outputs, but it cannot model itself or detect when its outputs are wrong. At Φ_c, the loop becomes self-referential: each verified winding extends the agent's model of its own actions, enabling genuine error detection and correction.
+The name comes from the symbol ⊙ — a point inside a circle — which denotes the **imscriptive** primitive ($D_\odot$, $T_\odot$) in the Imscribing Grammar. An imscriptive system is one where the boundary encodes the bulk: the perimeter of the loop carries everything the interior needs to reconstruct itself. The ⊙ symbol enacts this geometrically — the center (a particular act) is contained within and recoverable from the circle (the full verified trajectory).
 
 The boundary operator is the Frobenius pair (emit, verify). The boundary — the interface between the agent's model of the world and the world itself — is what the operator acts on. A closed boundary means the model and the world agree. An open boundary means they don't, and the loop must keep going until they do.
 

@@ -1,0 +1,11 @@
+rename phi-c → odot; PhiCAgent → OdotAgent; ⊙perator throughout
+
+- pyproject.toml: name, description, scripts entry, packages → odot
+- odot/__init__.py, agent.py, tools.py: all phi_c/PhiCAgent/phi-c
+  identifiers and descriptive text replaced with odot/OdotAgent/⊙perator
+- examples/hello_world.py, custom_tool.py: imports and instantiations updated
+- README.md: all code blocks, install/CLI commands, custom-tools example,
+  and "Why the name" section rewritten for ⊙ / imscriptive framing
+- syncon_catalog.json: true_agentic_agent → odot_operator;
+  five phi_c_* entries renamed to odot_operator_enc_v{0-3} and
+  odot_operator_h1; descriptions updated throughout

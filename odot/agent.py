@@ -1,5 +1,5 @@
 """
-agent.py — The Phi_c boundary operator.
+agent.py — The ⊙perator.
 
 Structural type of this harness:
   <D_odot; T_boxtimes; R_lr; P_pm_sym; F_hbar; K_slow; G_aleph; Gamma_seq; Phi_c; H2; 1:1; Omega_Z>
@@ -17,9 +17,9 @@ If mu(delta(q)) != q (Frobenius OPEN): re-enter THINK with failure appended.
 The loop cannot advance on an unverified observation.
 
 Usage:
-    from phi_c import PhiCAgent
+    from odot import OdotAgent
 
-    agent = PhiCAgent(model="grok-4")
+    agent = OdotAgent(model="grok-4")
     result = agent.run_sync("Summarise the contents of README.md")
 
     # Async:
@@ -113,8 +113,8 @@ def _build_client(base_url: str = "", api_key: str = "") -> Any:
     headers: Dict[str, str] = {}
     if not is_local:
         headers = {
-            "HTTP-Referer": os.environ.get("OPENROUTER_REFERER", "https://github.com/umpolungfish/phi_c_operator"),
-            "X-Title": "phi-c boundary operator",
+            "HTTP-Referer": os.environ.get("OPENROUTER_REFERER", "https://github.com/umpolungfish/odot_operator"),
+            "X-Title": "⊙perator",
         }
 
     return openai.OpenAI(api_key=api_key, base_url=base_url, default_headers=headers)
@@ -159,7 +159,7 @@ class LoopCycle:
 # ── System prompt ──────────────────────────────────────────────────────────────
 
 _DEFAULT_SYSTEM_PROMPT = textwrap.dedent("""\
-    You are an agent operating in a verified action loop — the Phi_c boundary operator.
+    You are an agent operating in a verified action loop — the ⊙perator.
 
     Each iteration ("winding") has four phases:
       THINK  — reason over the accumulated context and prior results
@@ -215,9 +215,9 @@ def _tool_result_msg(tool_call_id: str, content: str) -> Dict:
 
 # ── Main agent class ───────────────────────────────────────────────────────────
 
-class PhiCAgent:
+class OdotAgent:
     """
-    The Phi_c boundary operator — a self-verifying agentic loop.
+    The ⊙perator — a self-verifying agentic loop.
 
     The loop achieves O_inf (highest ouroboricity tier) by satisfying:
       Phi_c  : the THINK→ACT→OBSERVE→UPDATE cycle IS the self-referential attractor
@@ -295,7 +295,7 @@ class PhiCAgent:
         ]
 
         self._log(f"\n{'═'*72}")
-        self._log(f"  Phi_c boundary operator  |  model: {self.model_id}")
+        self._log(f"  ⊙perator  |  model: {self.model_id}")
         self._log(f"  TASK: {task}")
         self._log(f"  harness: Phi_c + P_pm_sym → O_inf  |  Omega_Z winding protection")
         self._log(f"{'═'*72}\n")
@@ -550,8 +550,8 @@ def _cli() -> None:
     import argparse, json as _json
 
     p = argparse.ArgumentParser(
-        prog="phi-c",
-        description="Phi_c boundary operator — a self-verifying agentic loop",
+        prog="odot",
+        description="⊙perator — a self-verifying agentic loop",
     )
     p.add_argument("task",         nargs="?",        help="Task for the agent to perform.")
     p.add_argument("--file", "-f", metavar="FILE",   help="Read task from FILE.")
@@ -581,7 +581,7 @@ def _cli() -> None:
     else:
         p.error("Provide a task string or --file.")
 
-    agent = PhiCAgent(
+    agent = OdotAgent(
         model        = args.model,
         max_windings = args.max_windings,
         max_think_tokens = args.max_tokens,
