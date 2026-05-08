@@ -1,4 +1,4 @@
-# $\odot$perator
+# ⊙perator
 
 A self-verifying agentic loop for any OpenAI-compatible model.
 
