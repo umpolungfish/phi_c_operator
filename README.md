@@ -41,7 +41,7 @@ The Frobenius condition is what keeps the loop closed. Without it, errors accumu
 
 This framework comes out of the [Imscribing Grammar](https://github.com/umpolungfish/imscrbgrmr) — a 12-primitive structural type theory for systems of all kinds. The full structural type of this harness is:
 
-⟨ Ð_ω; Þ_¨; Ř_{=}; Φ_{}}; ƒ_ż; Ç_{@}; Γ_ʔ; ɢ_ˌ; φ̂_ÿ; Ħ_A; Σ_S; Ω_z ⟩
+⟨ Ð_ω; Þ_¨; Ř_=; Φ_}; ƒ_ż; Ç_@; Γ_ʔ; ɢ_ˌ; φ̂_ÿ; Ħ_A; Σ_S; Ω_z ⟩
 
 Ouroboricity: O_∞ — the highest tier of self-modeling closure.
 
