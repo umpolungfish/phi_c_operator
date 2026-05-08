@@ -1,4 +1,4 @@
-# $\Phi_\text{c}$ — boundary Operator
+# $\odot$perator
 
 A self-verifying agentic loop for any OpenAI-compatible model.
 
